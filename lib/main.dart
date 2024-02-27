@@ -5,6 +5,7 @@ import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:punto_venta/vistas/inicio.dart';
+import 'package:punto_venta/vistas/vista_prueba.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,13 +21,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(),
-      title: 'Flutter Demo',
+      home: Inicio(),
+      title: 'Watefok',
     );
   }
 }
 
-class MyHomePage extends StatelessWidget {
+/*class MyHomePage extends StatelessWidget {
   const MyHomePage({super.key});
 
   @override
@@ -45,7 +46,7 @@ class MyHomePage extends StatelessWidget {
             // Llama a la vista Compra
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => Inicio()),
+              MaterialPageRoute(builder: (context) => MyApp()),
             );
           },
           child: const Text("COMENZAR"),
@@ -55,3 +56,4 @@ class MyHomePage extends StatelessWidget {
     );
   }
 }
+*/

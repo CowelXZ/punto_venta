@@ -1,17 +1,27 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:punto_venta/controlador/control_ventas.dart';
+import 'package:punto_venta/controlador/drawer_helper.dart';
+import 'package:punto_venta/modelos/modelos_ventas.dart';
+import 'package:punto_venta/vistas/agregar_producto.dart';
+import 'package:punto_venta/vistas/almacen.dart';
+import 'package:punto_venta/vistas/inicio.dart';
+
+import 'package:punto_venta/vistas/tezt.dart';
 
 class Compra extends StatelessWidget {
   final ProductoController productoController = ProductoController();
   @override
   Widget build(BuildContext context) {
+    //var ventasController;
     return Scaffold(
-      backgroundColor: Colors.transparent,
+      backgroundColor: Color.fromARGB(176, 156, 81, 81),
+      drawer: DrawerHelper.buildDrawer(context), 
       appBar: AppBar(
         titleTextStyle: const TextStyle(
           fontFamily: 'Times New Roman',
@@ -20,9 +30,6 @@ class Compra extends StatelessWidget {
         ),
         title: const Text("Hola que hace"),
         toolbarOpacity: 1,
-
-        // centerTitle: true,
-
         backgroundColor: Colors.transparent,
         systemOverlayStyle: const SystemUiOverlayStyle(
           statusBarColor: Colors.transparent,
@@ -40,145 +47,133 @@ class Compra extends StatelessWidget {
               ),
             ),
           ),
-          Column(
-            children: [
-              const SizedBox(
-                height: 15,
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    child: Container(
-                      //color: Colors.white,
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(12, 0, 12, 0),
+          SingleChildScrollView(
+            padding: const EdgeInsets.symmetric(horizontal: 25),
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: 15,
+                ),
+                const Row(
+                  children: [
+                    Expanded(
                       child: TextField(
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 20,
                           color: Color.fromARGB(255, 0, 0, 0),
                         ),
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Color.fromARGB(255, 15, 14, 22),
-                            ),
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(10),
-                            ),
-                          ),
+                        decoration: InputDecoration(
                           labelStyle: TextStyle(
-                            backgroundColor: Color.fromARGB(255, 255, 255, 255),
-                            color: Color.fromARGB(255, 59, 30, 187),
-                          ),
-                          hintText: 'Codigo o Producto',
-                          hintStyle: TextStyle(
-                            color: Color.fromARGB(255, 14, 1, 73),
-                          ),
-                        ),
-                        onChanged: (value) {
-                          // Acción a realizar cuando cambia el texto
-                        },
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              Container(
-                width: 500,
-                height: 400,
-                padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
-                decoration: BoxDecoration(
-                  color: Colors.transparent,
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(
-                    width: 2,
-                    color: const Color.fromARGB(255, 15, 14, 22),
-                  ),
-                ),
-                child: Expanded(
-                  child: ListView.builder(
-                    padding: const EdgeInsets.fromLTRB(8, 18, 8, 8),
-                    shrinkWrap: true,
-                    itemCount: productoController.productos.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      final producto = productoController.productos[index];
-                      return ListTile(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        title: Text(producto.nombre),
-                        trailing: Text(
-                            style: const TextStyle(
-                              fontSize: 15,
-                            ),
-                            producto.precio.toString()),
-                        leading: Text(
-                          style: const TextStyle(
-                            fontSize: 15,
+                            //backgroundColor: Color.fromARGB(255, 255, 255, 255),
                             color: Color.fromARGB(255, 0, 0, 0),
                           ),
-                          producto.id.toString(),
+                          labelText: 'Codigo o Producto',
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderSide: BorderSide(color: Colors.black),
+                          ),
                         ),
-                      );
-                    },
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                Container(
+                  //width: 500,
+                  //height: 400,
+                  padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+                  decoration: BoxDecoration(
+                    color: Colors.transparent,
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(
+                      width: 2,
+                      color: const Color.fromARGB(255, 15, 14, 22),
+                    ),
+                  ),
+                  child: Expanded(
+                    child: ListView.builder(
+                        padding: const EdgeInsets.fromLTRB(8, 18, 8, 8),
+                        shrinkWrap: true,
+                        itemCount: productoController.productos.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          final producto = productoController.productos[index];
+
+                          return ListTile(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            title: Text(producto.nombre),
+                            trailing: Text(
+                                style: const TextStyle(
+                                  fontSize: 15,
+                                ),
+                                producto.precio.toString()),
+                            leading: Text(
+                              style: const TextStyle(
+                                fontSize: 15,
+                                color: Color.fromARGB(255, 0, 0, 0),
+                              ),
+                              producto.id.toString(),
+                            ),
+                          );
+                        }),
                   ),
                 ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      elevation: 0,
-                      shape: const CircleBorder(
-                        side: BorderSide(
-                          color: Color(0xffFF9301),
-                          width: 1,
+                const SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                        elevation: 0,
+                        shape: const CircleBorder(
+                          side: BorderSide(
+                            color: Color(0xffFF9301),
+                            width: 1,
+                          ),
                         ),
+                        backgroundColor: const Color.fromARGB(255, 247, 4, 4),
+                        padding: const EdgeInsets.all(20),
                       ),
-                      backgroundColor: const Color.fromARGB(255, 247, 4, 4),
-                      padding: const EdgeInsets.all(20),
+                      child: const Icon(
+                        EvaIcons.car,
+                        color: Color.fromARGB(255, 0, 0, 0),
+                      ),
                     ),
-                    child: const Icon(
-                      EvaIcons.car,
-                      color: Color.fromARGB(255, 0, 0, 0),
+                    const SizedBox(
+                      width: 10,
                     ),
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      elevation: 0,
-                      shape: const CircleBorder(
-                        side: BorderSide(
-                          color: Color.fromARGB(255, 0, 0, 0),
-                          width: 1,
+                    ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                        elevation: 0,
+                        shape: const CircleBorder(
+                          side: BorderSide(
+                            color: Color.fromARGB(255, 0, 0, 0),
+                            width: 1,
+                          ),
                         ),
+                        backgroundColor: const Color.fromARGB(255, 255, 0, 0),
+                        padding: const EdgeInsets.all(20),
                       ),
-                      backgroundColor: const Color.fromARGB(255, 255, 0, 0),
-                      padding: const EdgeInsets.all(20),
+                      child: const Icon(
+                        EvaIcons.trash2,
+                        color: Color.fromARGB(255, 247, 245, 244),
+                      ),
                     ),
-                    child: const Icon(
-                      EvaIcons.trash2,
-                      color: Color.fromARGB(255, 247, 245, 244),
+                    const SizedBox(
+                      width: 30,
+                      height: 100,
                     ),
-                  ),
-                  const SizedBox(
-                    width: 30,
-                    height: 100,
-                  ),
-                ],
-              ),
-            ],
+                  ],
+                ),
+              ],
+            ),
           ),
         ],
       ),

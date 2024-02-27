@@ -1,8 +1,10 @@
-import 'package:flutter/cupertino.dart';
+import 'package:file_selector/file_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:punto_venta/vistas/compra.dart';
+import 'package:punto_venta/vistas/ver_imagen.dart';
+import 'package:punto_venta/vistas/vista_prueba.dart';
 
 class Inicio extends StatelessWidget {
   @override
@@ -75,6 +77,7 @@ class Inicio extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 40),
                 child: TextField(
+                  obscureText: true,
                   decoration: InputDecoration(
                     iconColor: const Color.fromARGB(255, 218, 34, 28),
                     prefixIcon: Container(
@@ -94,7 +97,6 @@ class Inicio extends StatelessWidget {
                       borderRadius: BorderRadius.all(
                         Radius.circular(35),
                       ),
-                      // borderSide: BorderSide.none,
                     ),
                     labelStyle:
                         const TextStyle(color: Color.fromARGB(255, 10, 10, 10)),
@@ -105,70 +107,70 @@ class Inicio extends StatelessWidget {
               const SizedBox(
                 height: 15,
               ),
-               Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    elevation: 0,
-                    shape: const CircleBorder(
-                      side: BorderSide(
-                        color: Color.fromARGB(255, 255, 2, 2),
-                        width: 1,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      elevation: 0,
+                      shape: const CircleBorder(
+                        side: BorderSide(
+                          color: Color.fromARGB(255, 255, 2, 2),
+                          width: 1,
+                        ),
                       ),
+                      backgroundColor: Colors.white,
+                      padding: const EdgeInsets.all(20),
                     ),
-                    backgroundColor: Colors.white,
-                    padding: const EdgeInsets.all(20),
+                    child: const Icon(
+                      EvaIcons.facebook,
+                      color: Color.fromARGB(255, 255, 2, 2),
+                    ),
                   ),
-                  child: const Icon(
-                    EvaIcons.facebook,
-                    color: Color.fromARGB(255, 255, 2, 2),
+                  const SizedBox(
+                    width: 10,
                   ),
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-                ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    elevation: 0,
-                    shape: const CircleBorder(
-                      side: BorderSide(
-                        color: Color.fromARGB(255, 255, 2, 2),
-                        width: 1,
+                  ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      elevation: 0,
+                      shape: const CircleBorder(
+                        side: BorderSide(
+                          color: Color.fromARGB(255, 255, 2, 2),
+                          width: 1,
+                        ),
                       ),
+                      backgroundColor: Colors.white,
+                      padding: const EdgeInsets.all(20),
                     ),
-                    backgroundColor: Colors.white,
-                    padding: const EdgeInsets.all(20),
+                    child: const Icon(
+                      EvaIcons.twitter,
+                      color: Color.fromARGB(255, 255, 2, 2),
+                    ),
                   ),
-                  child: const Icon(
-                    EvaIcons.twitter,
-                    color: Color.fromARGB(255, 255, 2, 2),
+                  const SizedBox(
+                    width: 10,
                   ),
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-                ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    elevation: 0,
-                    shape: const CircleBorder(
-                      side: BorderSide(
-                        color: Color.fromARGB(255, 255, 1, 1),
-                        width: 1,
+                  ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      elevation: 0,
+                      shape: const CircleBorder(
+                        side: BorderSide(
+                          color: Color.fromARGB(255, 255, 1, 1),
+                          width: 1,
+                        ),
                       ),
+                      backgroundColor: Colors.white,
+                      padding: const EdgeInsets.all(20),
                     ),
-                    backgroundColor: Colors.white,
-                    padding: const EdgeInsets.all(20),
+                    child: const Icon(
+                      EvaIcons.google,
+                      color: Color.fromARGB(255, 255, 1, 1),
+                    ),
                   ),
-                  child: const Icon(
-                    EvaIcons.google,
-                    color: Color.fromARGB(255, 255, 1, 1),
-                  ),
-                ),
-              ],
+                ],
               ),
               const SizedBox(
                 height: 15,
@@ -181,19 +183,18 @@ class Inicio extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Compra()),
+                    MaterialPageRoute(builder: (context) =>  Compra()),
                   );
                 },
-                child: const Text( "-Acceder-",
+                child: const Text(
+                  "-Acceder-",
                   style: TextStyle(
-                    fontSize: 18,
-                    color: Color.fromARGB(255, 255, 255, 255)),
+                      fontSize: 18, color: Color.fromARGB(255, 255, 255, 255)),
                 ),
               ),
               const SizedBox(
                 height: 15,
               ),
-             
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   minimumSize: const Size(155, 40),
@@ -202,15 +203,37 @@ class Inicio extends StatelessWidget {
                 onPressed: () {
                   Navigator.pop(
                     context,
-                   // MaterialPageRoute(builder: (context) => Compra()),
+                    // MaterialPageRoute(builder: (context) =>const  VistaPrueba()),
                   );
                 },
-                child: const Text( "-Retroceder-",
+                child: const Text(
+                  "-Retroceder-",
                   style: TextStyle(
-                    fontSize: 18,
-                    color: Color.fromARGB(255, 255, 255, 255)),
+                      fontSize: 18, color: Color.fromARGB(255, 255, 255, 255)),
                 ),
-              )
+              ),
+              ElevatedButton(
+                onPressed: () async {
+                  const XTypeGroup typeGroup = XTypeGroup(
+                    label: 'images',
+                    extensions: <String>['jpg', 'png'],
+                  );
+                  final XFile? file = await openFile(
+                      acceptedTypeGroups: <XTypeGroup>[typeGroup]);
+                  final Uint8List bytes = await file!.readAsBytes();
+
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => VerImagenVista(
+                        imageBytes: bytes,
+                      ),
+                    ),
+                  );
+                },
+                child: const Text('Abrir archico'),
+              ),
+
             ]),
           ]),
         ));
