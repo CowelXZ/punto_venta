@@ -1,13 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:punto_venta/controlador/control_ventas.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:punto_venta/modelos/modelos_ventas.dart';
+import 'package:punto_venta/vistas/agregar_producto.dart';
+import 'package:punto_venta/vistas_no_usadas/compra.dart';
+import 'package:punto_venta/vistas/ver_producto_vista.dart';
 
 import '';
 
-class Tezt extends StatelessWidget {
-  final ProductoController productoController = ProductoController();
-  @override
+class MenuVista extends StatelessWidget {
+final List<Producto> productos = [];  @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
@@ -41,27 +44,72 @@ class Tezt extends StatelessWidget {
                         onTap: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => Tezt()),
+                            MaterialPageRoute(builder: (context) => MenuVista()),
                           );
                         },
                       ),
                     ])
           ],
         ),
-        body: Stack(
-          children: [ 
-          Container(
-            padding:const EdgeInsets.symmetric(vertical: 40), 
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assets/yanise_fondo.jpeg'),
-                fit: BoxFit.cover,
+        body: Center(
+          child: Column(
+            children: <Widget>[
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => VerProductosVista(
+                        productos: productos,
+                      ),
+                    ),
+                  );
+                },
+                child: const Text('Ventas'),
               ),
-            ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => AgregarProductoVista(
+                        productos: productos,
+                      ),
+                    ),
+                  );
+                },
+                child: const Text('Agregar Producto'),
+              ),
+              ElevatedButton(
+                onPressed: () {Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const VerProductosVista(productos: [],),
+                    ),
+                  );
+                },
+                child: const Text('Ver Productos'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  var box = Hive.box('productos');
+
+                  print(box.toMap());
+                },
+                child: const Text('Test Hive'),
+              ),
+            ],
           ),
-          const SingleChildScrollView(
-            
-          )
-        ]));
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () async {
+            // var box = Hive.box('testBox');
+            // box.put('name', 'David3');
+            // var name = box.get('name');
+            // print('Name: $name');
+          },
+          child: const Icon(Icons.add),
+        ));
   }
 }
+

@@ -1,3 +1,4 @@
+/*
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -5,6 +6,7 @@ import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:punto_venta/controlador/contador_venta.dart';
 import 'package:punto_venta/controlador/control_ventas.dart';
 import 'package:punto_venta/controlador/drawer_helper.dart';
 import 'package:punto_venta/modelos/modelos_ventas.dart';
@@ -16,6 +18,8 @@ import 'package:punto_venta/vistas/tezt.dart';
 
 class Compra extends StatelessWidget {
   final ProductoController productoController = ProductoController();
+
+  Compra({super.key, required List<Producto> productos});
   @override
   Widget build(BuildContext context) {
     //var ventasController;
@@ -121,6 +125,19 @@ class Compra extends StatelessWidget {
                         }),
                   ),
                 ),
+                Container(
+                  padding: const EdgeInsets.all(15),
+                  child: const Text("Monto de la compra: ",//+venta_contador(co
+                 //unt)+"",
+                  
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                    color: Color.fromARGB(224, 224, 1, 45),
+                  )),
+
+
+                ),
                 const SizedBox(
                   height: 20,
                 ),
@@ -128,12 +145,15 @@ class Compra extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+
+                      },
+                      
                       style: ElevatedButton.styleFrom(
                         elevation: 0,
                         shape: const CircleBorder(
                           side: BorderSide(
-                            color: Color(0xffFF9301),
+                            color: Color.fromARGB(255, 0, 0, 0),
                             width: 1,
                           ),
                         ),
@@ -180,3 +200,4 @@ class Compra extends StatelessWidget {
     );
   }
 }
+*/

@@ -1,9 +1,9 @@
-import 'package:file_selector/file_selector.dart';
+//import 'package:file_selector/file_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
-import 'package:punto_venta/vistas/compra.dart';
-import 'package:punto_venta/vistas/ver_imagen.dart';
+import 'package:punto_venta/vistas_no_usadas/compra.dart';
+import 'package:punto_venta/vistas_no_usadas/ver_imagen.dart';
 import 'package:punto_venta/vistas/vista_prueba.dart';
 
 class Inicio extends StatelessWidget {
@@ -183,7 +183,7 @@ class Inicio extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) =>  Compra()),
+                    MaterialPageRoute(builder: (context) =>  const VistaPrueba(productos: [],)),
                   );
                 },
                 child: const Text(
@@ -212,7 +212,7 @@ class Inicio extends StatelessWidget {
                       fontSize: 18, color: Color.fromARGB(255, 255, 255, 255)),
                 ),
               ),
-              ElevatedButton(
+              /*ElevatedButton(
                 onPressed: () async {
                   const XTypeGroup typeGroup = XTypeGroup(
                     label: 'images',
@@ -233,7 +233,7 @@ class Inicio extends StatelessWidget {
                 },
                 child: const Text('Abrir archico'),
               ),
-
+*/
             ]),
           ]),
         ));

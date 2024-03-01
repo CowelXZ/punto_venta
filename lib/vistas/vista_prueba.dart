@@ -7,14 +7,17 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:punto_venta/main.dart';
 import 'package:punto_venta/vistas/agregar_producto.dart';
-import 'package:punto_venta/vistas/compra.dart';
+import 'package:punto_venta/vistas/agregar_producto_almacen.dart';
+import 'package:punto_venta/vistas/almacen_vista.dart';
+import 'package:punto_venta/vistas_no_usadas/compra.dart';
+import 'package:punto_venta/vistas/ver_producto_vista.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
 class VistaPrueba extends StatelessWidget {
-  const VistaPrueba({super.key});
+  const VistaPrueba({super.key, required List productos});
 
   @override
   Widget build(BuildContext context) {
@@ -42,13 +45,13 @@ class VistaPrueba extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => Compra(
+                    builder: (context) => const VerProductosVista(productos: [],
                       //productos: productos,
                     ),
                   ),
                 );
               },
-              child: const Text('Ventas'),
+              child: const Text('Ver Carrito de Compras'),
             ),
             const SizedBox(
               height: 20,),
@@ -63,7 +66,33 @@ class VistaPrueba extends StatelessWidget {
                   ),
                 );
               },
-              child: Text('Agregar Producto'),
+              child: const Text('Agregar Producto'),
+            ),
+            const SizedBox(
+              height: 20,),
+             ElevatedButton(      
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => AgregarProductoAlmacen(),
+                  ),
+                );
+              },
+              child: const Text('Agregar Producto ALmacen'),
+            ),
+            const SizedBox(
+              height: 20,),
+             ElevatedButton(      
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const AlmacenVista(),
+                  ),
+                );
+              },
+              child: const Text('Almacen Vista'),
             ),
           ],
         )

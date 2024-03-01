@@ -1,4 +1,4 @@
-import 'dart:io';
+/*import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:file_selector/file_selector.dart';
@@ -24,3 +24,4 @@ class VerImagenVista extends StatelessWidget {
     );
   }
 }
+*/
